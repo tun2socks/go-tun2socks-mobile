@@ -6,6 +6,8 @@ Demo for building and using `go-tun2socks` on iOS and Android.
 
 - macOS (iOS)
 - Xcode (iOS)
+- SDK (Android)
+- NDK (Android)
 - make
 - Go >= 1.11
 - A C compiler (e.g.: clang, gcc)
