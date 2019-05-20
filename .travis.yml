@@ -1,0 +1,26 @@
+sudo: required
+
+language: go
+
+os:
+  - linux
+  - osx
+
+go:
+  - "1.12.5"
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then source .travis/install-sdk-ndk; fi
+
+install:
+  - echo "Getting deps"
+  - go get -d ./...
+  - echo "Installing gomobile"
+  - go get golang.org/x/mobile/cmd/gomobile
+  - go install golang.org/x/mobile/cmd/gomobile
+  - gomobile init
+
+script:
+  - echo "Building"
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then make android; ls -l build; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then make ios; ls -l build; fi
