@@ -1,23 +1,20 @@
 #!/bin/sh
 
-echo "Installing java unzip wget"
-sudo apt-get update >/dev/null 2>&1
-sudo apt-get install default-jdk >/dev/null 2>&1
-sudo apt-get install unzip wget >/dev/null 2>&1
-echo "Downloading sdktool"
-wget -q -O sdktool.zip "https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
-echo "Unzipping sdktool"
+java -version
+
+echo "Unzipping sdk tools"
 unzip sdktool.zip > /dev/null 2>&1
+
 export PATH=`pwd`/tools/bin:$PATH
-echo "Installing sdk-tools"
+
+echo "Installing sdk components"
 echo y | sdkmanager "tools" >/dev/null 2>&1
-echo "Installing sdk-platofrm-tools"
 echo y | sdkmanager "platform-tools" >/dev/null 2>&1
-echo "Installing platforms;android-15"
 echo y | sdkmanager "platforms;android-15" >/dev/null 2>&1
-echo "Installing ndk-bundle"
 echo y | sdkmanager "ndk-bundle" >/dev/null 2>&1
+
 export ANDROID_HOME=`pwd`
 export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+
 echo "sdk installed in $ANDROID_HOME"
 echo "ndk installed in $ANDROID_NDK_HOME"
