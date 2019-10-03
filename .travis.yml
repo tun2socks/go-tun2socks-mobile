@@ -3,7 +3,7 @@ sudo: required
 language: go
 
 go:
-  - "1.12.5"
+  - "1.13"
 
 os:
   - linux
@@ -34,7 +34,6 @@ install:
   - echo "Installing gomobile"
   - go get golang.org/x/mobile/cmd/gomobile
   - go install golang.org/x/mobile/cmd/gomobile
-  - gomobile init
 
 script:
   - echo "Building"
